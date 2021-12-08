@@ -3,12 +3,13 @@
 # PLUGINS
 plugins=(git)
 
+# export ZSH=/Users/kylelonghurst/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 ZSH_THEME="sonicradish"
 
-export TERM=xterm-256color
-export CLICOLOR=1
+# export TERM=xterm-256color
+# export CLICOLOR=1
 export LSCOLORS=Fafacxdxbxegedabagacad
 
 # PROMPT STUFF
