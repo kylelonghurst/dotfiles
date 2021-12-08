@@ -4,7 +4,7 @@
 # Forked from Kent C. Dodds https://raw.githubusercontent.com/kentcdodds/dotfiles/HEAD/.macos
 # Modified by Kyle Longhurst
 # Run without downloading:
-# curl https://raw.githubusercontent.com/kylelonghurst/dotfiles/HEAD/.macos | bash
+# curl https://raw.githubusercontent.com/kylelonghurst/dotfiles/pardev/.macos | bash
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
