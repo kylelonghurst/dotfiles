@@ -46,7 +46,7 @@ npm install --global fkill-cli npm-quick-run \
 npm-check-updates
 
 echo "installing apps with brew cask"
-brew install --cask alfred google-chrome firefox brave-browser sizeup \
+brew install --cask alfred firefox brave-browser sizeup \
 bartender dropbox visual-studio-code 1password sourcetree vlc \
 obs discord handbrake amazon-chime spotify suspicious-package  \
 qlmarkdown qlvideo quicklook-json webpquicklook \
@@ -82,10 +82,10 @@ defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool TRUE
 ###############################################################################
 
 # Set computer name (as done via System Preferences → Sharing)
-sudo scutil --set ComputerName "CreationStation"
-sudo scutil --set HostName "CreationStation"
-sudo scutil --set LocalHostName "CreationStation"
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "CreationStation"
+sudo scutil --set ComputerName "CreationWorkStation"
+sudo scutil --set HostName "CreationWorkStation"
+sudo scutil --set LocalHostName "CreationWorkStation"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "CreationWorkStation"
 
 # Set standby delay to 24 hours (default is 1 hour)
 sudo pmset -a standbydelay 86400
