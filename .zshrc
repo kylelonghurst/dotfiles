@@ -83,7 +83,7 @@ PATH="/usr/local/bin:$PATH:./node_modules/.bin";
 # PATH="$PATH:$HOME/.my_bin";
 
 # CDPATH ALTERATIONS
-CDPATH=.:$HOME:$HOME/pardev
+CDPATH=.:$HOME:$HOME/code
 # CDPATH=($HOME $HOME/code $HOME/Desktop)
 
 # disable https://scarf.sh/
