@@ -1,6 +1,6 @@
 [user]
-  name = Kyle Longhurst
-  email = kyle@longhurst.dev
+	name = Kyle Longhurst
+	email = kyle@longhurst.dev
 
 [pull]
   rebase = true
@@ -38,3 +38,11 @@
 	whitespace = red reverse
 [init]
 	defaultBranch = main
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/kylelonghurst/.stCommitMsg

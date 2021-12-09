@@ -48,8 +48,8 @@ npm-check-updates
 echo "installing apps with brew cask"
 brew install --cask alfred google-chrome firefox brave-browser sizeup \
 bartender dropbox visual-studio-code 1password sourcetree vlc \
-obs discord handbrake zoom spotify suspicious-package  \
-qlcolorcode qlmarkdown qlstephen qlvideo quicklook-json webpquicklook \
+obs discord handbrake amazon-chime spotify suspicious-package  \
+qlmarkdown qlvideo quicklook-json webpquicklook \
 encryptme grammarly
 
 echo "Generating a new SSH key for GitHub"
@@ -244,8 +244,8 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 2
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 1
-defaults write NSGlobalDomain InitialKeyRepeat -int 10
+defaults write NSGlobalDomain KeyRepeat -int 3
+defaults write NSGlobalDomain InitialKeyRepeat -int 100
 
 # Set language and text formats
 # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with

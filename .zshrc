@@ -3,10 +3,10 @@
 # PLUGINS
 plugins=(git)
 
-# export ZSH=/Users/kylelonghurst/.oh-my-zsh
-source $ZSH/oh-my-zsh.sh
+ZSH_THEME="half-life"
 
-ZSH_THEME="sonicradish"
+export ZSH=/Users/kylelonghurst/.oh-my-zsh
+source $ZSH/oh-my-zsh.sh
 
 # export TERM=xterm-256color
 # export CLICOLOR=1
@@ -97,9 +97,9 @@ SCARF_ANALYTICS=false
 # alias ..l="cd ../ && ll";
 # alias pg="echo 'Pinging Google' && ping www.google.com";
 # alias vz="vim ~/.zshrc";
-alias cz="code ~/.zshrc";
+alias z="code ~/.zshrc";
 alias sz="source ~/.zshrc";
-alias ohmyzsh="code ~/.oh-my-zsh"
+alias omz="code ~/.oh-my-zsh"
 alias desk="cd ~/Desktop";
 alias p="cd ~/pardev";
 # alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
