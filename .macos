@@ -33,7 +33,7 @@ echo "brew installing stuff"
 # hub: a github-specific version of git
 # tree: really handy for listing out directories in text
 # bat: A cat(1) clone with syntax highlighting and Git integration.
-brew install git hub watchman tree bat python awscli \
+brew install zsh git hub python watchman tree bat awscli \
 
 echo "installing node (via n-install)"
 curl -L https://git.io/n-install | bash
@@ -50,14 +50,14 @@ brew install --cask alfred google-chrome firefox brave-browser sizeup \
 bartender dropbox visual-studio-code 1password sourcetree vlc \
 obs discord handbrake zoom spotify suspicious-package  \
 qlcolorcode qlmarkdown qlstephen qlvideo quicklook-json webpquicklook \
-encryptme grammarly \
+encryptme grammarly
 
 echo "Generating a new SSH key for GitHub"
 ssh-keygen -t ed25519 -C "kyle@longhurst.dev" -f ~/.ssh/id_klongdev
 eval "$(ssh-agent -s)"
 touch ~/.ssh/config
 echo "Host *\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ~/.ssh/id_klongdev" | tee ~/.ssh/config
-ssh-add -K ~/.ssh/id_klongdev
+ssh-add --apple-use-keychain ~/.ssh/id_klongdev
 echo "run 'pbcopy < ~/.ssh/id_klongdev.pub' and paste that into GitHub"
 
 echo "cloning dotfiles"
@@ -235,8 +235,8 @@ defaults write http://com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag 
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 2
 
 # Use scroll gesture with the Ctrl (^) modifier key to zoom
-defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
-defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
+# defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
+# defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 # Follow the keyboard focus while zoomed in
 # defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 
@@ -410,8 +410,8 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 # Enable highlight hover effect for the grid view of a stack (Dock)
 defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
-# Set the icon size of Dock items to 16 pixels
-defaults write com.apple.dock tilesize -int 16
+# Set the icon size of Dock items to 32 pixels
+defaults write com.apple.dock tilesize -int 32
 
 # Change minimize/maximize window effect
 defaults write com.apple.dock mineffect -string "scale"
