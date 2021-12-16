@@ -4,7 +4,7 @@
 # Forked from Kent C. Dodds https://raw.githubusercontent.com/kentcdodds/dotfiles/HEAD/.macos
 # Modified by Kyle Longhurst
 # Run without downloading:
-# curl https://raw.githubusercontent.com/kylelonghurst/dotfiles/HEAD/.macos | bash
+# curl https://raw.githubusercontent.com/kylelonghurst/dotfiles/lindsey/.macos | bash
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
@@ -22,8 +22,8 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 echo "Hello $(whoami)! Let's get you set up."
 
-echo "mkdir -p ${HOME}/code"
-mkdir -p "${HOME}/code"
+# echo "mkdir -p ${HOME}/code"
+# mkdir -p "${HOME}/code"
 
 echo "installing homebrew"
 # install homebrew https://brew.sh
@@ -33,65 +33,62 @@ echo "brew installing stuff"
 # hub: a github-specific version of git
 # tree: really handy for listing out directories in text
 # bat: A cat(1) clone with syntax highlighting and Git integration.
-brew install zsh git hub python watchman tree bat awscli \
+brew install zsh git hub \
 
-echo "installing node (via n-install)"
-curl -L https://git.io/n-install | bash
+# echo "installing node (via n-install)"
+# curl -L https://git.io/n-install | bash
 
-echo "node --version: $(node --version)"
-echo "npm --version: $(npm --version)"
+# echo "node --version: $(node --version)"
+# echo "npm --version: $(npm --version)"
 
-echo "installing a few global npm packages"
-npm install --global fkill-cli npm-quick-run \
-npm-check-updates
+# echo "installing a few global npm packages"
+# npm install --global fkill-cli npm-quick-run \
+# npm-check-updates
 
 echo "installing apps with brew cask"
-brew install --cask alfred google-chrome firefox brave-browser sizeup \
-bartender dropbox visual-studio-code 1password sourcetree vlc \
-obs discord handbrake amazon-chime spotify suspicious-package  \
-qlmarkdown qlvideo quicklook-json webpquicklook \
-encryptme grammarly
+brew install --cask alfred google-chrome sizeup \
+bartender dropbox 1password vlc spotify encryptme
 
-echo "Generating a new SSH key for GitHub"
-ssh-keygen -t ed25519 -C "kyle@longhurst.dev" -f ~/.ssh/id_klongdev
-eval "$(ssh-agent -s)"
-touch ~/.ssh/config
-echo "Host *\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ~/.ssh/id_klongdev" | tee ~/.ssh/config
-ssh-add --apple-use-keychain ~/.ssh/id_klongdev
-echo "run 'pbcopy < ~/.ssh/id_klongdev.pub' and paste that into GitHub"
+# echo "Generating a new SSH key for GitHub"
+# ssh-keygen -t ed25519 -C "kyle@longhurst.dev" -f ~/.ssh/id_klongdev
+# eval "$(ssh-agent -s)"
+# touch ~/.ssh/config
+# echo "Host *\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ~/.ssh/id_klongdev" | tee ~/.ssh/config
+# ssh-add --apple-use-keychain ~/.ssh/id_klongdev
+# echo "run 'pbcopy < ~/.ssh/id_klongdev.pub' and paste that into GitHub"
 
-echo "cloning dotfiles"
-git clone git@github.com:kylelonghurst/dotfiles.git "${HOME}/dotfiles"
-ln -s "${HOME}/dotfiles/.zshrc" "${HOME}/.zshrc"
-ln -s "${HOME}/dotfiles/.gitignore_global" "${HOME}/.gitignore_global"
-ln -s "${HOME}/dotfiles/.gitconfig" "${HOME}/.gitconfig"
+# echo "cloning dotfiles"
+# git clone git@github.com:kylelonghurst/dotfiles.git "${HOME}/dotfiles"
+# ln -s "${HOME}/dotfiles/.zshrc" "${HOME}/.zshrc"
+# ln -s "${HOME}/dotfiles/.gitignore_global" "${HOME}/.gitignore_global"
+# ln -s "${HOME}/dotfiles/.gitconfig" "${HOME}/.gitconfig"
 
-# get bat and delta all configured
-mkdir -p "${HOME}/.config/bat/themes"
-ln -s "${HOME}/dotfiles/.config/bat/config" "${HOME}/.config/bat/config"
-git clone https://github.com/batpigandme/night-owlish "${HOME}/.config/bat/themes/night-owlish"
-bat cache --build
+# # get bat and delta all configured
+# mkdir -p "${HOME}/.config/bat/themes"
+# ln -s "${HOME}/dotfiles/.config/bat/config" "${HOME}/.config/bat/config"
+# git clone https://github.com/batpigandme/night-owlish "${HOME}/.config/bat/themes/night-owlish"
+# bat cache --build
 
 echo "making system modifications:"
 
 # Make Chrome Two finger swipe for back and forward
-defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool TRUE
+# defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool TRUE
 
 ###############################################################################
 # General UI/UX                                                               #
 ###############################################################################
 
 # Set computer name (as done via System Preferences → Sharing)
-sudo scutil --set ComputerName "CreationStation"
-sudo scutil --set HostName "CreationStation"
-sudo scutil --set LocalHostName "CreationStation"
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "CreationStation"
+sudo scutil --set ComputerName "Lindsey MBP"
+sudo scutil --set HostName "Lindsey MBP"
+sudo scutil --set LocalHostName "Lindsey MBP"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "Lindsey MBP"
 
 # Set standby delay to 24 hours (default is 1 hour)
-sudo pmset -a standbydelay 86400
+# sudo pmset -a standbydelay 86400
 
 # Disable the sound effects on boot
-sudo nvram SystemAudioVolume=" "
+# sudo nvram SystemAudioVolume=" "
 
 # Disable transparency in the menu bar and elsewhere on Yosemite
 # defaults write com.apple.universalaccess reduceTransparency -bool true
@@ -125,13 +122,13 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
 # Save to disk (not to iCloud) by default
-defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+# defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
 # Automatically quit printer app once the print jobs complete
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
 # Disable the “Are you sure you want to open this application?” dialog
-defaults write com.apple.LaunchServices LSQuarantine -bool false
+# defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 # Remove duplicates in the “Open With” menu (also see `lscleanup` alias)
 /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
@@ -159,13 +156,13 @@ defaults write com.apple.helpviewer DevMode -bool true
 
 # Reveal IP address, hostname, OS version, etc. when clicking the clock
 # in the login window
-sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+# sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
 # Restart automatically if the computer freezes
 # sudo systemsetup -setrestartfreeze on
 
 # Never go into computer sleep mode
-sudo systemsetup -setcomputersleep Off > /dev/null
+# sudo systemsetup -setcomputersleep Off > /dev/null
 
 # Disable Notification Center and remove the menu bar icon
 # launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
@@ -241,11 +238,11 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 2
 # defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 
 # Disable press-and-hold for keys in favor of key repeat
-defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+# defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 3
-defaults write NSGlobalDomain InitialKeyRepeat -int 100
+# defaults write NSGlobalDomain KeyRepeat -int 3
+# defaults write NSGlobalDomain InitialKeyRepeat -int 100
 
 # Set language and text formats
 # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
@@ -269,8 +266,8 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 100
 ###############################################################################
 
 # Require password immediately after sleep or screen saver begins
-defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 0
+# defaults write com.apple.screensaver askForPassword -int 1
+# defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # Save screenshots to the desktop
 # defaults write com.apple.screencapture location -string "${HOME}/Desktop"
@@ -286,7 +283,7 @@ defaults write com.apple.screencapture type -string "png"
 defaults write NSGlobalDomain AppleFontSmoothing -int 1
 
 # Enable HiDPI display modes (requires restart)
-sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
+# sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
 
 ###############################################################################
 # Finder                                                                      #
@@ -310,19 +307,19 @@ defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
 # Finder: show hidden files by default
-defaults write com.apple.finder AppleShowAllFiles -bool true
+# defaults write com.apple.finder AppleShowAllFiles -bool true
 
 # Finder: show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 # Finder: show status bar
-defaults write com.apple.finder ShowStatusBar -bool true
+# defaults write com.apple.finder ShowStatusBar -bool true
 
 # Finder: show path bar
-defaults write com.apple.finder ShowPathbar -bool true
+# defaults write com.apple.finder ShowPathbar -bool true
 
 # Display full POSIX path as Finder window title
-defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+# defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 
 # Keep folders on top when sorting by name
 defaults write com.apple.finder _FXSortFoldersFirst -bool true
@@ -333,20 +330,20 @@ defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 # Disable the warning when changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
-# Enable spring loading for directories
-defaults write NSGlobalDomain com.apple.springing.enabled -bool true
+# # Enable spring loading for directories
+# defaults write NSGlobalDomain com.apple.springing.enabled -bool true
 
-# Reduce the spring loading delay for directories
-defaults write NSGlobalDomain com.apple.springing.delay -float 0.2
+# # Reduce the spring loading delay for directories
+# defaults write NSGlobalDomain com.apple.springing.delay -float 0.2
 
 # Avoid creating .DS_Store files on network or USB volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 # Disable disk image verification
-defaults write com.apple.frameworks.diskimages skip-verify -bool true
-defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
-defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
+# defaults write com.apple.frameworks.diskimages skip-verify -bool true
+# defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
+# defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
 
 # Automatically open a new Finder window when a volume is mounted
 defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
@@ -386,11 +383,11 @@ defaults write com.apple.finder WarnOnEmptyTrash -bool false
 # Enable AirDrop over Ethernet and on unsupported Macs running Lion
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
-# Show the ~/Library folder
-chflags nohidden ~/Library
+# # Show the ~/Library folder
+# chflags nohidden ~/Library
 
-# Show the /Volumes folder
-sudo chflags nohidden /Volumes
+# # Show the /Volumes folder
+# sudo chflags nohidden /Volumes
 
 # Remove Dropbox’s green checkmark icons in Finder
 # file=/Applications/Dropbox.app/Contents/Resources/emblem-dropbox-uptodate.icns
@@ -408,101 +405,101 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 ###############################################################################
 
 # Enable highlight hover effect for the grid view of a stack (Dock)
-defaults write com.apple.dock mouse-over-hilite-stack -bool true
+# defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
-# Set the icon size of Dock items to 32 pixels
-defaults write com.apple.dock tilesize -int 32
+# # Set the icon size of Dock items to 32 pixels
+# defaults write com.apple.dock tilesize -int 32
 
-# Change minimize/maximize window effect
-defaults write com.apple.dock mineffect -string "scale"
+# # Change minimize/maximize window effect
+# defaults write com.apple.dock mineffect -string "scale"
 
-# Minimize windows into their application’s icon
-defaults write com.apple.dock minimize-to-application -bool true
+# # Minimize windows into their application’s icon
+# defaults write com.apple.dock minimize-to-application -bool true
 
-# Enable spring loading for all Dock items
-defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
+# # Enable spring loading for all Dock items
+# defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
 
-# Show indicator lights for open applications in the Dock
-defaults write com.apple.dock show-process-indicators -bool true
+# # Show indicator lights for open applications in the Dock
+# defaults write com.apple.dock show-process-indicators -bool true
 
-# Wipe all (default) app icons from the Dock
-# This is only really useful when setting up a new Mac, or if you don’t use
-# the Dock to launch apps.
-defaults write com.apple.dock persistent-apps -array
+# # Wipe all (default) app icons from the Dock
+# # This is only really useful when setting up a new Mac, or if you don’t use
+# # the Dock to launch apps.
+# defaults write com.apple.dock persistent-apps -array
 
-# Show only open applications in the Dock
-defaults write com.apple.dock static-only -bool true
+# # Show only open applications in the Dock
+# defaults write com.apple.dock static-only -bool true
 
-# Don’t animate opening applications from the Dock
-defaults write com.apple.dock launchanim -bool false
+# # Don’t animate opening applications from the Dock
+# defaults write com.apple.dock launchanim -bool false
 
-# Speed up Mission Control animations
-defaults write com.apple.dock expose-animation-duration -float 0.1
+# # Speed up Mission Control animations
+# defaults write com.apple.dock expose-animation-duration -float 0.1
 
-# Don’t group windows by application in Mission Control
-# (i.e. use the old Exposé behavior instead)
-# defaults write com.apple.dock expose-group-by-app -bool false
+# # Don’t group windows by application in Mission Control
+# # (i.e. use the old Exposé behavior instead)
+# # defaults write com.apple.dock expose-group-by-app -bool false
 
-# Disable Dashboard
-defaults write com.apple.dashboard mcx-disabled -bool true
+# # Disable Dashboard
+# defaults write com.apple.dashboard mcx-disabled -bool true
 
-# Don’t show Dashboard as a Space
-defaults write com.apple.dock dashboard-in-overlay -bool true
+# # Don’t show Dashboard as a Space
+# defaults write com.apple.dock dashboard-in-overlay -bool true
 
-# Don’t automatically rearrange Spaces based on most recent use
-defaults write com.apple.dock mru-spaces -bool false
+# # Don’t automatically rearrange Spaces based on most recent use
+# defaults write com.apple.dock mru-spaces -bool false
 
-# Remove the auto-hiding Dock delay
-# defaults write com.apple.dock autohide-delay -float 0
-# Remove the animation when hiding/showing the Dock
-# defaults write com.apple.dock autohide-time-modifier -float 0
+# # Remove the auto-hiding Dock delay
+# # defaults write com.apple.dock autohide-delay -float 0
+# # Remove the animation when hiding/showing the Dock
+# # defaults write com.apple.dock autohide-time-modifier -float 0
 
-# Automatically hide and show the Dock
-defaults write com.apple.dock autohide -bool true
+# # Automatically hide and show the Dock
+# defaults write com.apple.dock autohide -bool true
 
-# Make Dock icons of hidden applications translucent
-defaults write com.apple.dock showhidden -bool true
+# # Make Dock icons of hidden applications translucent
+# defaults write com.apple.dock showhidden -bool true
 
-# Disable the Launchpad gesture (pinch with thumb and three fingers)
-defaults write com.apple.dock showLaunchpadGestureEnabled -int 0
+# # Disable the Launchpad gesture (pinch with thumb and three fingers)
+# defaults write com.apple.dock showLaunchpadGestureEnabled -int 0
 
-# Reset Launchpad, but keep the desktop wallpaper intact
-# find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
+# # Reset Launchpad, but keep the desktop wallpaper intact
+# # find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
 
-# Add iOS & Watch Simulator to Launchpad
-# sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" "/Applications/Simulator.app"
-# sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator (Watch).app" "/Applications/Simulator (Watch).app"
+# # Add iOS & Watch Simulator to Launchpad
+# # sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" "/Applications/Simulator.app"
+# # sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator (Watch).app" "/Applications/Simulator (Watch).app"
 
-# Add a spacer to the left side of the Dock (where the applications are)
-#defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
-# Add a spacer to the right side of the Dock (where the Trash is)
-#defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type="spacer-tile";}'
+# # Add a spacer to the left side of the Dock (where the applications are)
+# #defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
+# # Add a spacer to the right side of the Dock (where the Trash is)
+# #defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type="spacer-tile";}'
 
-# Hot corners
-# Possible values:
-#  0: no-op
-#  2: Mission Control
-#  3: Show application windows
-#  4: Desktop
-#  5: Start screen saver
-#  6: Disable screen saver
-#  7: Dashboard
-# 10: Put display to sleep
-# 11: Launchpad
-# 12: Notification Center
-# 1048576 is ⌘ I think
-# Top left screen corner → Desktop
-defaults write com.apple.dock wvous-tl-corner -int 5
-defaults write com.apple.dock wvous-tl-modifier -int 1048576
-# Top right screen corner → Desktop
-defaults write com.apple.dock wvous-tr-corner -int 10
-defaults write com.apple.dock wvous-tr-modifier -int 1048576
-# Bottom left screen corner → Desktop
-defaults write com.apple.dock wvous-bl-corner -int 4
-defaults write com.apple.dock wvous-bl-modifier -int 1048576
-# Bottom right screen corner → Put display to sleep
-defaults write com.apple.dock wvous-br-corner -int 4
-defaults write com.apple.dock wvous-br-modifier -int 1048576
+# # Hot corners
+# # Possible values:
+# #  0: no-op
+# #  2: Mission Control
+# #  3: Show application windows
+# #  4: Desktop
+# #  5: Start screen saver
+# #  6: Disable screen saver
+# #  7: Dashboard
+# # 10: Put display to sleep
+# # 11: Launchpad
+# # 12: Notification Center
+# # 1048576 is ⌘ I think
+# # Top left screen corner → Desktop
+# defaults write com.apple.dock wvous-tl-corner -int 5
+# defaults write com.apple.dock wvous-tl-modifier -int 1048576
+# # Top right screen corner → Desktop
+# defaults write com.apple.dock wvous-tr-corner -int 10
+# defaults write com.apple.dock wvous-tr-modifier -int 1048576
+# # Bottom left screen corner → Desktop
+# defaults write com.apple.dock wvous-bl-corner -int 4
+# defaults write com.apple.dock wvous-bl-modifier -int 1048576
+# # Bottom right screen corner → Put display to sleep
+# defaults write com.apple.dock wvous-br-corner -int 4
+# defaults write com.apple.dock wvous-br-modifier -int 1048576
 
 ###############################################################################
 # Safari & WebKit                                                             #
@@ -525,26 +522,26 @@ defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
 # Prevent Safari from opening ‘safe’ files automatically after downloading
 defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
 
-# Allow hitting the Backspace key to go to the previous page in history
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true
+# # Allow hitting the Backspace key to go to the previous page in history
+# defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true
 
-# Hide Safari’s bookmarks bar by default
-defaults write com.apple.Safari ShowFavoritesBar -bool false
+# # Hide Safari’s bookmarks bar by default
+# defaults write com.apple.Safari ShowFavoritesBar -bool false
 
-# Hide Safari’s sidebar in Top Sites
-defaults write com.apple.Safari ShowSidebarInTopSites -bool false
+# # Hide Safari’s sidebar in Top Sites
+# defaults write com.apple.Safari ShowSidebarInTopSites -bool false
 
-# Disable Safari’s thumbnail cache for History and Top Sites
-defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
+# # Disable Safari’s thumbnail cache for History and Top Sites
+# defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
 
-# Enable Safari’s debug menu
-defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+# # Enable Safari’s debug menu
+# defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 
-# Make Safari’s search banners default to Contains instead of Starts With
-defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
+# # Make Safari’s search banners default to Contains instead of Starts With
+# defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
 
-# Remove useless icons from Safari’s bookmarks bar
-defaults write com.apple.Safari ProxiesInBookmarksBar "()"
+# # Remove useless icons from Safari’s bookmarks bar
+# defaults write com.apple.Safari ProxiesInBookmarksBar "()"
 
 # Enable the Develop menu and the Web Inspector in Safari
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
@@ -555,7 +552,7 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 # Enable continuous spellchecking
-defaults write com.apple.Safari WebContinuousSpellCheckingEnabled -bool true
+# defaults write com.apple.Safari WebContinuousSpellCheckingEnabled -bool true
 # Disable auto-correct
 # defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool false
 
@@ -581,10 +578,10 @@ defaults write com.apple.Safari WebKitJavaScriptCanOpenWindowsAutomatically -boo
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically -bool false
 
 # Disable auto-playing video
-defaults write com.apple.Safari WebKitMediaPlaybackAllowsInline -bool false
-defaults write com.apple.SafariTechnologyPreview WebKitMediaPlaybackAllowsInline -bool false
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowsInlineMediaPlayback -bool false
-defaults write com.apple.SafariTechnologyPreview com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowsInlineMediaPlayback -bool false
+# defaults write com.apple.Safari WebKitMediaPlaybackAllowsInline -bool false
+# defaults write com.apple.SafariTechnologyPreview WebKitMediaPlaybackAllowsInline -bool false
+# defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowsInlineMediaPlayback -bool false
+# defaults write com.apple.SafariTechnologyPreview com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowsInlineMediaPlayback -bool false
 
 # Enable “Do Not Track”
 defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
@@ -622,11 +619,11 @@ defaults write com.apple.mail DraftsViewerAttributes -dict-add "DisplayInThreade
 ###############################################################################
 
 # Hide Spotlight tray-icon (and subsequent helper)
-sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+# sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
 # Disable Spotlight indexing for any volume that gets mounted and has not yet
 # been indexed before.
 # Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
-sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
+# sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
 # Change indexing order and disable some search results
 # Yosemite-specific search results (remove them if you are using macOS 10.9 or older):
 #   MENU_DEFINITION
@@ -635,35 +632,35 @@ sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Vol
 #   MENU_SPOTLIGHT_SUGGESTIONS (send search queries to Apple)
 #   MENU_WEBSEARCH             (send search queries to Apple)
 #   MENU_OTHER
-defaults write com.apple.spotlight orderedItems -array \
-  '{"enabled" = 1;"name" = "APPLICATIONS";}' \
-  '{"enabled" = 1;"name" = "SYSTEM_PREFS";}' \
-  '{"enabled" = 1;"name" = "DIRECTORIES";}' \
-  '{"enabled" = 1;"name" = "PDF";}' \
-  '{"enabled" = 1;"name" = "FONTS";}' \
-  '{"enabled" = 0;"name" = "DOCUMENTS";}' \
-  '{"enabled" = 0;"name" = "MESSAGES";}' \
-  '{"enabled" = 0;"name" = "CONTACT";}' \
-  '{"enabled" = 0;"name" = "EVENT_TODO";}' \
-  '{"enabled" = 0;"name" = "IMAGES";}' \
-  '{"enabled" = 0;"name" = "BOOKMARKS";}' \
-  '{"enabled" = 0;"name" = "MUSIC";}' \
-  '{"enabled" = 0;"name" = "MOVIES";}' \
-  '{"enabled" = 0;"name" = "PRESENTATIONS";}' \
-  '{"enabled" = 0;"name" = "SPREADSHEETS";}' \
-  '{"enabled" = 0;"name" = "SOURCE";}' \
-  '{"enabled" = 0;"name" = "MENU_DEFINITION";}' \
-  '{"enabled" = 0;"name" = "MENU_OTHER";}' \
-  '{"enabled" = 0;"name" = "MENU_CONVERSION";}' \
-  '{"enabled" = 0;"name" = "MENU_EXPRESSION";}' \
-  '{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
-  '{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
-# Load new settings before rebuilding the index
-killall mds > /dev/null 2>&1
-# Make sure indexing is enabled for the main volume
-sudo mdutil -i on / > /dev/null
-# Rebuild the index from scratch
-sudo mdutil -E / > /dev/null
+# defaults write com.apple.spotlight orderedItems -array \
+#   '{"enabled" = 1;"name" = "APPLICATIONS";}' \
+#   '{"enabled" = 1;"name" = "SYSTEM_PREFS";}' \
+#   '{"enabled" = 1;"name" = "DIRECTORIES";}' \
+#   '{"enabled" = 1;"name" = "PDF";}' \
+#   '{"enabled" = 1;"name" = "FONTS";}' \
+#   '{"enabled" = 0;"name" = "DOCUMENTS";}' \
+#   '{"enabled" = 0;"name" = "MESSAGES";}' \
+#   '{"enabled" = 0;"name" = "CONTACT";}' \
+#   '{"enabled" = 0;"name" = "EVENT_TODO";}' \
+#   '{"enabled" = 0;"name" = "IMAGES";}' \
+#   '{"enabled" = 0;"name" = "BOOKMARKS";}' \
+#   '{"enabled" = 0;"name" = "MUSIC";}' \
+#   '{"enabled" = 0;"name" = "MOVIES";}' \
+#   '{"enabled" = 0;"name" = "PRESENTATIONS";}' \
+#   '{"enabled" = 0;"name" = "SPREADSHEETS";}' \
+#   '{"enabled" = 0;"name" = "SOURCE";}' \
+#   '{"enabled" = 0;"name" = "MENU_DEFINITION";}' \
+#   '{"enabled" = 0;"name" = "MENU_OTHER";}' \
+#   '{"enabled" = 0;"name" = "MENU_CONVERSION";}' \
+#   '{"enabled" = 0;"name" = "MENU_EXPRESSION";}' \
+#   '{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
+#   '{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
+# # Load new settings before rebuilding the index
+# killall mds > /dev/null 2>&1
+# # Make sure indexing is enabled for the main volume
+# sudo mdutil -i on / > /dev/null
+# # Rebuild the index from scratch
+# sudo mdutil -E / > /dev/null
 
 ###############################################################################
 # Terminal & iTerm 2                                                          #
@@ -782,7 +779,7 @@ defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 ###############################################################################
 
 # Enable the WebKit Developer Tools in the Mac App Store
-defaults write com.apple.appstore WebKitDeveloperExtras -bool true
+# defaults write com.apple.appstore WebKitDeveloperExtras -bool true
 
 # Enable Debug Menu in the Mac App Store
 # defaults write com.apple.appstore ShowDebugMenu -bool true
@@ -800,7 +797,7 @@ defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
 defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
 
 # Automatically download apps purchased on other Macs
-defaults write com.apple.SoftwareUpdate ConfigDataInstall -int 1
+# defaults write com.apple.SoftwareUpdate ConfigDataInstall -int 1
 
 # Turn on app auto-update
 defaults write com.apple.commerce AutoUpdate -bool true
@@ -833,11 +830,11 @@ defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 ###############################################################################
 
 # Disable the all too sensitive backswipe on trackpads
-defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
+# defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
 # defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool false
 
 # Disable the all too sensitive backswipe on Magic Mouse
-defaults write com.google.Chrome AppleEnableMouseSwipeNavigateWithScrolls -bool false
+# defaults write com.google.Chrome AppleEnableMouseSwipeNavigateWithScrolls -bool false
 # defaults write com.google.Chrome.canary AppleEnableMouseSwipeNavigateWithScrolls -bool false
 
 # Use the system-native print preview dialog
@@ -875,7 +872,5 @@ install: \n\
   (App Store apps) \n\
 \n\
 Restart Terminal.app\n\
-copy git config from your backup/re-login \n\
-copy .npmrc from your backup/re-login \n\
 login to literally everything \n\
 "

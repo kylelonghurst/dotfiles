@@ -5,7 +5,7 @@ plugins=(git)
 
 ZSH_THEME="half-life"
 
-export ZSH=/Users/kylelonghurst/.oh-my-zsh
+export ZSH=/Users/lindsey/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 # export TERM=xterm-256color
