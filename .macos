@@ -47,18 +47,14 @@ npm-check-updates
 
 echo "installing apps with brew cask"
 brew install --cask alfred firefox brave-browser sizeup \
-bartender dropbox visual-studio-code 1password sourcetree vlc \
+bartender dropbox visual-studio-code 1password 1password-cli sourcetree vlc \
 obs discord handbrake amazon-chime spotify suspicious-package  \
 qlmarkdown qlvideo quicklook-json webpquicklook \
 encryptme grammarly
 
-echo "Generating a new SSH key for GitHub"
-ssh-keygen -t ed25519 -C "kyle@longhurst.dev" -f ~/.ssh/id_klongdev
-eval "$(ssh-agent -s)"
+echo "Setup SSH config to use 1Password agent"
 touch ~/.ssh/config
-echo "Host *\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ~/.ssh/id_klongdev" | tee ~/.ssh/config
-ssh-add --apple-use-keychain ~/.ssh/id_klongdev
-echo "run 'pbcopy < ~/.ssh/id_klongdev.pub' and paste that into GitHub"
+echo 'Host *\n IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"' | tee ~/.ssh/config
 
 echo "cloning dotfiles"
 git clone git@github.com:kylelonghurst/dotfiles.git "${HOME}/dotfiles"

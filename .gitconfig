@@ -1,6 +1,7 @@
 [user]
 	name = Kyle Longhurst
 	email = kyle@longhurst.dev
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII2ZsVo0R8jjJYBdnF3erI7N9DPcLaxu41b7CFxZMxE/
 
 [pull]
   rebase = true
@@ -46,3 +47,8 @@
 	trustExitCode = true
 [commit]
 	template = /Users/kylelonghurst/.stCommitMsg
+	gpgsign = false
+[gpg]
+	format = ssh
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
